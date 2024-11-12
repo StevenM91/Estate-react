@@ -1,0 +1,15 @@
+@import "./responsive.scss";
+
+.layout {
+  background: purple;
+  height: 100vh;
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 29px;
+  padding-right: 29px;
+
+  @include sm {
+    background: red;
+  }
+}
