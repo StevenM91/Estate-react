@@ -1,1 +1,8 @@
 pour faire tourner le server node js utilisé console ninja console-ninja node --watch
+
+installation prisma 
+
+npm i prisma 
+npx prisma init --datasource-provider sqlite ou mongodb
+
+npx prisma db push , va permettre d'envoyer les données vers la bases de données et surtout de surveiller si les id comme le mail est bien unique
