@@ -6,13 +6,12 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   const user = true;
-
   return (
     <nav>
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png" alt="" />
-          <span>Steven Estate</span>
+          <span>Stev Estate</span>
         </a>
         <a href="/">Home</a>
         <a href="/">About</a>
@@ -34,10 +33,10 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <a href="/">Sign In</a>
+            <a href="/">Sign in</a>
             <a href="/" className="register">
-              Sign Up{" "}
-            </a>{" "}
+              Sign up
+            </a>
           </>
         )}
         <div className="menuIcon">
@@ -52,8 +51,8 @@ function Navbar() {
           <a href="/">About</a>
           <a href="/">Contact</a>
           <a href="/">Agents</a>
-          <a href="/">Sign In</a>
-          <a href="/">Sign Up</a>
+          <a href="/">Sign in</a>
+          <a href="/">Sign up</a>
         </div>
       </div>
     </nav>
