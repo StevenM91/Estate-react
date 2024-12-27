@@ -1,4 +1,5 @@
 pour faire tourner le server node js utilisé console ninja console-ninja node --watch
+dans la console ninja pour aussi générer les .env, console-ninja node --env-file .env --watch app.js
 
 installation prisma 
 
@@ -6,3 +7,12 @@ npm i prisma
 npx prisma init --datasource-provider sqlite ou mongodb
 
 npx prisma db push , va permettre d'envoyer les données vers la bases de données et surtout de surveiller si les id comme le mail est bien unique
+
+sur postman ne pas oublier d'aller sur le edit, et rajouter une valeur cela permettra juste d'ajouté la valeur url dans postman
+
+Pour les cookie installer cookie parser, npm i cookie-
+
+pour installer les token json, le stockage dans le navigateur, npm i jsonwebtoken
+
+Pour générer une clé unique pour le token JWT mettre dans le terminal,  openssl rand -base64 32
+
