@@ -29,6 +29,7 @@ function App() {
           path: "/:id",
           element: <SinglePage />,
           loader: singlePageLoader,
+        },
 
         {
           path: "/login",
