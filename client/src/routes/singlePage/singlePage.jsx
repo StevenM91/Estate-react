@@ -9,6 +9,7 @@ import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
   const post = useLoaderData();
+
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -146,11 +147,11 @@ function SinglePage() {
             <button
               onClick={handleSave}
               style={{
-                background: saved ? "#fece51" : "white",
+                backgroundColor: saved ? "#fece51" : "white",
               }}
             >
-              <img src="/save.png" alt="" />
               {saved ? "Place Saved" : "Save the Place"}
+              <img src="/save.png" alt="" />
             </button>
           </div>
         </div>
