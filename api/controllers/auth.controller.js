@@ -29,43 +29,46 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Failed to create user!" });
   }
 };
+
 export const login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // CHECK IF USER EXISTS
+    // CHECK IF THE USER EXISTS
+
     const user = await prisma.user.findUnique({
       where: { username },
     });
 
-    if (!user) {
-      return res.status(401).json({ message: "Invalid Credentials" });
-    }
+    if (!user) return res.status(400).json({ message: "Invalid Credentials!" });
 
-    // CHECK IF PASSWORD IS CORRECT
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    // CHECK IF THE PASSWORD IS CORRECT
 
-    if (!isValidPassword)
-      return res.status(401).json({ message: "Invalid Credentials" });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    // GENERATE TOKEN
-    // res.setHeader("Set-Cookie", "test=" + "myValue").json("success!");
+    if (!isPasswordValid)
+      return res.status(400).json({ message: "Invalid Credentials!" });
+
+    // GENERATE COOKIE TOKEN AND SEND TO THE USER
+
+    // res.setHeader("Set-Cookie", "test=" + "myValue").json("success")
     const age = 1000 * 60 * 60 * 24 * 7;
 
-    const jwtToken = jwt.sign(
-      { id: user.id, isAdmin: false },
-      process.env.JWT_SECRET,
+    const token = jwt.sign(
       {
-        expiresIn: age,
-      }
+        id: user.id,
+        isAdmin: false,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: age }
     );
 
     const { password: userPassword, ...userInfo } = user;
 
     res
-      .cookie("token", jwtToken, {
+      .cookie("token", token, {
         httpOnly: true,
-        // secure: true,
+        // secure:true,
         maxAge: age,
       })
       .status(200)
@@ -75,7 +78,7 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Failed to login!" });
   }
 };
+
 export const logout = (req, res) => {
-  // Suppression du cookie
-  res.clearCookie("token").status(200).json({ message: "Logged out!" });
+  res.clearCookie("token").status(200).json({ message: "Logout Successful" });
 };
